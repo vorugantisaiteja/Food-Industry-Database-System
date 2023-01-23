@@ -198,7 +198,7 @@ Begin
  add_Restaurant(Restaurants_seq.NEXTVAL,'Ribs_R_US','Regina Dr', 'Halethorpe','MD',21250, FIND_CUISINE_TYPE_ID('American'));
  add_Restaurant(Restaurants_seq.NEXTVAL,'Bella Italia','Circle Dr', 'Halethorpe','MD',21043, FIND_CUISINE_TYPE_ID('Italian'));
 
-/*Deliverable 3 : Member 1*/
+
  add_Restaurant(Restaurants_seq.NEXTVAL,'Roma','Westland Gardens', 'Arbutus','MD',21043, FIND_CUISINE_TYPE_ID('Italian'));
  add_Restaurant(Restaurants_seq.NEXTVAL,'Bull Roast','Maiden Choice', 'Arbutus','NY',10013, FIND_CUISINE_TYPE_ID('BBQ'));
  add_Restaurant(Restaurants_seq.NEXTVAL,'Taj Mahal','Towson', 'Baltimore','NY',10013, FIND_CUISINE_TYPE_ID('Indian'));
@@ -356,10 +356,7 @@ Begin
  Display_List_of_Waiters('Bella Italia');
 END;
 /
-/*Deliverable 3
-Group: T11
-Name: Manisha Yadav
-Task: Member 1*/
+
 
 /*PROCEDURE: Display_Restaurant_By_Cuisine
 Purpose: This Procedure Displays the Restaurant Details given the input parameter of Cuisine name*/
@@ -410,8 +407,6 @@ END;
 
 
 
-/* Member 3*/
-/*Sai Teja Voruganti*/
 Create or Replace Procedure INSERT_MENU_ITEMS(item_name varchar,price number,ctid int)
 AS
 Begin
@@ -567,8 +562,6 @@ List_ResInven('Ethiop');
 End;
 /
 
-
-/*Member 5*/
 /*Creating and Insert Procedure*/
 
 CREATE OR REPLACE PROCEDURE Customer_insert
@@ -655,7 +648,6 @@ return -1;
 END;	
 /
 
-/*Member 4*/
 /*function created for FIND_ORDER_ID*/
 create or replace function FIND_ORDER_ID(O_date date)
   return int
@@ -753,7 +745,7 @@ End INSERT_ORDERS;
 
 
 /*-----------------------------------------Reports Section---------------------------------------------*/
-/*---------------------------Member1 Reports------------------------*/
+Reports------------------------*/
 /*PROCEDURE: Report_Income_by_state
 Purpose: This Procedure generates a report that lists the income of restaurants per cuisine type and per state.*/
 SET SERVEROUTPUT ON;
@@ -798,8 +790,8 @@ Begin
  Report_Income_by_state;
  END;
 /
-
-/*---------------------------Member2 Reports------------------------*/
+ 
+Reports------------------------*/
 
 Set Serveroutput on;
 create or replace procedure Report_Tips
@@ -810,7 +802,7 @@ CURSOR cur_res IS
     v_sum orders.tip%type;   
 BEGIN
        dbms_output.put_line('========================================================================');
-       dbms_output.put_line(' -------------------------- REPORT BY MEMBER 2 -----------------------');
+       dbms_output.put_line(' -------------------------- REPORT -----------------------');
        dbms_output.Put_line('------------------------REPORTING TIPS BY WAITER ---------------');
     OPEN cur_res;
     LOOP
@@ -822,7 +814,7 @@ CLOSE cur_res;
    dbms_output.put_line('========================================================================');
 END;
 /
-/*---------------------------Member2 Reports------------------------*/
+/*--------------------------- Reports------------------------*/
 Set Serveroutput on;
 create or replace procedure Per_StateTips
 is
@@ -833,7 +825,7 @@ CURSOR cur_res IS
     s_sum number;
 BEGIN
     dbms_output.put_line('========================================================================');
-    dbms_output.put_line(' -------------------------- REPORT BY MEMBER 2 -----------------------');
+    dbms_output.put_line(' -------------------------- REPORT -----------------------');
     dbms_output.Put_line('------------------------REPORTING TIPS BY STATE ---------------');
     OPEN cur_res;
     LOOP
@@ -852,7 +844,7 @@ Per_StateTips();
 End;
 /
 
-/*---------------------------Member3 Reports------------------------*/
+/*--------------------------- Reports------------------------*/
 --Report for Menu Items
 Set Serveroutput on;
 Declare
@@ -863,7 +855,7 @@ menuname menu_items.mitem_name%type;
 quant restaurant_inventory.quantity%type;
 Begin
    dbms_output.put_line('========================================================================');
-   dbms_output.put_line(' -------------------------- REPORT BY MEMBER 3 -----------------------');
+   dbms_output.put_line(' -------------------------- REPORT  -----------------------');
    dbms_output.Put_line('------------------------REPORTING MENU ITEMS ---------------');
    
    open c1;
@@ -877,7 +869,7 @@ Begin
 End;
 /
 
-/*---------------------------Member4 Reports------------------------*/
+/*--------------------------- Reports------------------------*/
 --report display orders per menuitem per cusinetype
 /
 Set Serveroutput on;
@@ -925,7 +917,7 @@ restname varchar(20);
 amount_per_rest number;
 Begin
    dbms_output.put_line('========================================================================');
-   dbms_output.put_line(' -------------------------- REPORT BY MEMBER 4 -----------------------');
+   dbms_output.put_line(' -------------------------- REPORT -----------------------');
    dbms_output.Put_line('------------------------REPORTING TOP 3 RESTAURANTS OF EACH STATE ---------------');
    open c1;
    loop
@@ -938,7 +930,7 @@ Begin
 End;
 /
 
-/*---------------------------Member5 Reports------------------------*/
+/*--------------------------- Reports------------------------*/
 
 /*CREATING PROCEDURE FOR HIGHEST PAYING CUSTOMERS*/
 
@@ -951,7 +943,7 @@ SELECT STATEMENT THAT RETURNS TOP THREE CUSTOMERS
 name varchar(50);
 BEGIN
 dbms_output.put_line('========================================================================');
-dbms_output.put_line(' -------------------------- REPORT BY MEMBER 5 -----------------------');
+dbms_output.put_line(' -------------------------- REPORT  -----------------------');
 dbms_output.Put_line('------------------------Highest Paying Customers ---------------');
 FOR item IN hpc
 LOOP 
@@ -975,7 +967,7 @@ FROM orders GROUP BY CUST_ID ORDER BY total_paid ) WHERE ROWNUM <= 3;
 name varchar(50);
 BEGIN
 dbms_output.put_line('========================================================================');
-dbms_output.put_line(' -------------------------- REPORT BY MEMBER 5 -----------------------');
+dbms_output.put_line(' -------------------------- REPORT -----------------------');
 dbms_output.Put_line('------------------------Lowest Paying Customers ---------------');
 FOR item IN lPC
 LOOP 
@@ -1005,7 +997,7 @@ FROM ORDERS JOIN customers ON customers.customer_ID = Orders.CUST_ID GROUP BY
 customers.state ORDER BY total_tips DESC;
 BEGIN
 dbms_output.put_line('========================================================================');
-dbms_output.put_line(' -------------------------- REPORT BY MEMBER 5 -----------------------');
+dbms_output.put_line(' -------------------------- REPORT  -----------------------');
 dbms_output.Put_line('------------------------State of Generous Customers ---------------');
 FOR item IN T_cur
 LOOP 
